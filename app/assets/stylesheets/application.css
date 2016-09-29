@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+#header {
+  text-align: right;
+}
+
+#status {
+
+}
+
+#std-div {
+  max-width: 500px;
+  margin: auto;
+  border: 1px solid black;
+  padding: 5px;
+}
