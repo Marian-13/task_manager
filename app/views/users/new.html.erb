@@ -1,6 +1,8 @@
 <div class="std-div">
   <h1>Signup!</h1>
 
+  <%= render 'shared/errors', model: @user %>
+
   <%= form_for :user, url: '/users' do |f| %>
     Name:</br>
     <%= f.text_field :name %></br>
