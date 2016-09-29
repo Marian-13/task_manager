@@ -1,0 +1,12 @@
+<div class="task std-div">
+  <h1>Task</h1>
+
+  <b>Name:</b></br>
+  <%= @task.name %></br>
+  <b>Description:</b></br>
+  <%= @task.description %></br>
+  </br>
+  <%= link_to 'Edit', edit_task_path(@task) %>
+  <%= link_to 'Destroy', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Share' %>
+</div>

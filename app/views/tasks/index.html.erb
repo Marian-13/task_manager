@@ -1,0 +1,26 @@
+<div class="std-div">
+  <% # TODO remove if else from view %>
+  <% if @tasks.blank? %>
+    <h2>You have no tasks.</h2>
+  <% else %>
+    <h2>Task List</h2>
+
+    <% @tasks.each do |task| %>
+      <div class="task std-div">
+        <b>Name:</b></br>
+        <%= task.name %></br>
+        <b>Description:</b></br>
+        <%= task.description %></br>
+        </br>
+        <%= link_to 'Show', task %>
+        <%= link_to 'Edit', edit_task_path(task) %>
+        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Share' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="std-div">
+  <%= link_to 'New Task', new_task_path %>
+</div>
