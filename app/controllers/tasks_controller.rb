@@ -18,9 +18,12 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @user = current_user
 
     if @task.save
-      redirect_to task # TODO add notice
+      @user.tasks << @task
+      @user.save
+      redirect_to @task # TODO add notice
     else
       render :new
     end
@@ -34,6 +37,10 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to tasks_path # TODO add notice
+  end
+
+  def share
+    @task =
   end
 
   private

@@ -1,6 +1,12 @@
 <div class="std-div">
   <h1>Login</h1>
 
+  <% if flash[:notice]%>
+    <div class="error">
+      <%= flash[:notice] %>
+  </div>
+  <% end  %>
+
   <%= form_tag login_path do %>
     Email:</br>
     <%= text_field_tag :email %></br>

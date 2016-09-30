@@ -9,4 +9,11 @@
   <%= link_to 'Edit', edit_task_path(@task) %>
   <%= link_to 'Destroy', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
   <%= link_to 'Share' %>
+  <div id="search-tools">
+    <%= form_tag chat_search_path do %>
+      <%= text_field_tag :search, 'Enter your search query here...', class: 'search-field' %>
+      <%= submit_tag "Search" %><br />
+    <% end %>
+  </div>
+
 </div>

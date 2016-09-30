@@ -11,11 +11,14 @@
         <%= task.name %></br>
         <b>Description:</b></br>
         <%= task.description %></br>
+        <b>User Email:</b></br>
+        <% task.users.each do |user| %>
+          <%= user.email %></br>
+        <% end %>
         </br>
         <%= link_to 'Show', task %>
         <%= link_to 'Edit', edit_task_path(task) %>
         <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <%= link_to 'Share' %>
       </div>
     <% end %>
   <% end %>
