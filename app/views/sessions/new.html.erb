@@ -4,7 +4,8 @@
   <% if flash[:notice]%>
     <div class="error">
       <%= flash[:notice] %>
-  </div>
+      <%= flash[:notice] = nil %>
+    </div>
   <% end  %>
 
   <%= form_tag login_path do %>

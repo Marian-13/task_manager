@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
 
   resources :tasks
-  
+  post 'tasks/share'
+
   root 'sessions#new'
 end

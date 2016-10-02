@@ -4,16 +4,19 @@
   <b>Name:</b></br>
   <%= @task.name %></br>
   <b>Description:</b></br>
-  <%= @task.description %></br>
-  </br>
+  <% if !@task.description.empty? %>
+    <%= @task.description %></br>
+  <% else %>
+    No description added</br>
+  <% end %>
+  <b>User Email:</b></br>
+  <% @task.users.each do |user| %>
+    <%= user.email %></br>
+  <% end %>
   <%= link_to 'Edit', edit_task_path(@task) %>
   <%= link_to 'Destroy', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <%= link_to 'Share' %>
-  <div id="search-tools">
-    <%= form_tag chat_search_path do %>
-      <%= text_field_tag :search, 'Enter your search query here...', class: 'search-field' %>
-      <%= submit_tag "Search" %><br />
-    <% end %>
-  </div>
+</div>
 
+<div class="task std-div">
+  <%= link_to 'Back', tasks_path %>
 </div>

@@ -10,7 +10,11 @@
         <b>Name:</b></br>
         <%= task.name %></br>
         <b>Description:</b></br>
-        <%= task.description %></br>
+        <% if !task.description.empty? %>
+          <%= task.description %></br>
+        <% else %>
+          No description added</br>
+        <% end %>
         <b>User Email:</b></br>
         <% task.users.each do |user| %>
           <%= user.email %></br>
@@ -27,3 +31,11 @@
 <div class="std-div">
   <%= link_to 'New Task', new_task_path %>
 </div>
+
+<div id="notifications-container" class="std-div">
+  <h2>Notifications</h2>
+</div>
+
+<script type="text/javascript">
+  fayeSubscribe("<%= @channel %>");
+</script>
