@@ -14,19 +14,31 @@
  *= require_self
  */
 
-#header {
-  text-align: right;
-}
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
-#status {
-
+.application-container {
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .std-div {
-  max-width: 500px;
+  max-width: 600px;
+  min-width: 300px;
   margin: 5px auto;
-  border: 1px solid black;
   padding: 5px;
-  max-height: 400px;
+  max-height: 450px;
   overflow-y: auto;
+  // border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.centered-inline {
+  text-align: center;
+}
+
+#id {
+  notifications-container {
+
+  }
 }

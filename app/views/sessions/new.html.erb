@@ -1,18 +1,16 @@
-<div class="std-div">
-  <h1>Login</h1>
+<div class="std-div well well-sm">
+  <span class="centered-inline"><h1>Login</h1></span>
 
-  <% if flash[:notice]%>
-    <div class="error">
-      <%= flash[:notice] %>
-      <%= flash[:notice] = nil %>
-    </div>
-  <% end  %>
+  <%= render 'shared/flash_error' %>
 
   <%= form_tag login_path do %>
-    Email:</br>
-    <%= text_field_tag :email %></br>
-    Password:</br>
-    <%= password_field_tag :password %></br></br>
-    <%= submit_tag "Submit" %>
+    <b>Email:</b></br>
+    <%= text_field_tag :email, nil, class: 'form-control' %></br>
+    <b>Password:</b></br>
+    <%= password_field_tag :password, nil, class: 'form-control' %></br>
+    <%= submit_tag "Submit", class: "btn btn-primary" %>
   <% end %>
+
+  </br>
+  Having no account? <%= link_to 'Sign up', signup_path %>
 </div>

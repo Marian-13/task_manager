@@ -1,9 +1,7 @@
 <% if model.errors.any? %>
-  <div class="std-div">
-    <h3>
-      <%= pluralize(model.errors.count, "error") %> prohibited this
-      <%= model.class.name %> from being saved:
-    </h3>
+  <div class="alert alert-danger">
+    <%= pluralize(model.errors.count, "error") %> prohibited this
+    <%= model.class.name.downcase %> from being saved:
 
     <ul>
       <% model.errors.full_messages.each do |msg| %>

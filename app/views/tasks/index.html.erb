@@ -1,29 +1,27 @@
-<div class="std-div">
-  <% # TODO remove if else from view %>
-  <% if @tasks.blank? %>
-    <h2>You have no tasks.</h2>
-  <% else %>
-    <h2>Task List</h2>
+<div class="std-div" id="notifications-container">
+  <h2>Notifications</h2>
+</div>
 
-    <% @tasks.each do |task| %>
-      <div class="task std-div">
-        <b>Name:</b></br>
-        <%= task.name %></br>
-        <b>Description:</b></br>
-        <% if !task.description.empty? %>
-          <%= task.description %></br>
-        <% else %>
-          No description added</br>
-        <% end %>
-        <b>User Email:</b></br>
-        <% task.users.each do |user| %>
-          <%= user.email %></br>
-        <% end %>
-        </br>
-        <%= link_to 'Show', task %>
-        <%= link_to 'Edit', edit_task_path(task) %>
-        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+<div class="std-div well well-sm">
+  <%= render 'shared/flash_errors_array' %>
+
+  <% if @tasks.blank? %>
+    <span class="centered-inline"><h2>You have no tasks...</h2></span>
+  <% else %>
+    <span class="centered-inline"><h2>Task List</h2></span>
+
+    <% @tasks.each_with_index do |task, index| %>
+      <div class="std-div well well-sm">
+        <span class="centered-inline"><h4>Task <%= (index + 1) %></h4></span>
+        <%= render 'task', task: task%>
+        <%= link_to 'Show', task, class: "btn btn-primary" %>
+        <%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary" %>
+        <%= link_to 'Destroy', task, method: :delete,
+                                     data: { confirm: 'Are you sure?' },
+                                     class: "btn btn-danger" %>
       </div>
+
+      </br>
     <% end %>
   <% end %>
 </div>
@@ -32,9 +30,7 @@
   <%= link_to 'New Task', new_task_path %>
 </div>
 
-<div id="notifications-container" class="std-div">
-  <h2>Notifications</h2>
-</div>
+<div class="std-div well well-sm" id="notifications-container"></div>
 
 <script type="text/javascript">
   fayeSubscribe("<%= @channel %>");

@@ -1,22 +1,11 @@
-<div class="task std-div">
-  <h1>Task</h1>
+<div class="std-div well well-sm">
+  <%= render 'shared/flash_errors_array' %>
 
-  <b>Name:</b></br>
-  <%= @task.name %></br>
-  <b>Description:</b></br>
-  <% if !@task.description.empty? %>
-    <%= @task.description %></br>
-  <% else %>
-    No description added</br>
-  <% end %>
-  <b>User Email:</b></br>
-  <% @task.users.each do |user| %>
-    <%= user.email %></br>
-  <% end %>
-  <%= link_to 'Edit', edit_task_path(@task) %>
-  <%= link_to 'Destroy', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <span class="centered-inline"><h4>Task</h4></span>
+
+  <%= render 'task', task: @task %>
+  <%= link_to 'Edit', edit_task_path(@task), class: "btn btn-primary" %>
+  <%= link_to 'Back', tasks_path, class: "btn btn-primary" %>
 </div>
 
-<div class="task std-div">
-  <%= link_to 'Back', tasks_path %>
-</div>
+<div class="std-div well well-sm" id="notifications-container"></div>

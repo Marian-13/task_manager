@@ -2,10 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.task {
-
-}
-
 #notifications-container {
   display: none;
+  overflow-y: auto;
+  max-height: 150px;
+}
+
+.task-attribute {
+  width: 20%;
+  overflow: auto;
+  float: left;
+}
+
+.task-attribute-value {
+  margin-left: 20%;
+}
+
+.shared-email-container {
+  padding-bottom: 5px;
+
+  input {
+    display: inline;
+    width: 90%;
+  }
+
+  .btn {
+    width: 8%;
+    float: right;
+    overflow: auto;
+  }
 }

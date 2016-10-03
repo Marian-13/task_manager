@@ -1,9 +1,11 @@
-<div class="std-div">
-  <h1>New Task</h1>
+<div class="std-div well well-sm">
+  <span class="centered-inline"><h1>New Task</h1></span>
 
   <%= render 'form', task: @task %>
 </div>
 
-<div class="task std-div">
+<div class="std-div">
   <%= link_to 'Back', tasks_path %>
 </div>
+
+<div class="std-div well well-sm" id="notifications-container"></div>

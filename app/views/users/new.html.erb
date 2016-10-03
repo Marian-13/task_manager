@@ -1,17 +1,17 @@
-<div class="std-div">
-  <h1>Signup!</h1>
+<div class="std-div well well-sm">
+  <span class="centered-inline"><h1>Signup</h1></span>
 
-  <%= render 'shared/errors', model: @user %>
+  <%= render 'shared/model_errors', model: @user %>
 
   <%= form_for :user, url: '/users' do |f| %>
-    Name:</br>
-    <%= f.text_field :name %></br>
-    Email:</br>
-    <%= f.text_field :email %></br>
-    Password:</br>
-    <%= f.password_field :password %></br>
-    Password Confirmation:</br>
-    <%= f.password_field :password_confirmation %></br></br>
-    <%= f.submit "Submit" %>
+    <b>Name:</b></br>
+    <%= f.text_field :name, class: 'form-control' %></br>
+    <b>Email:</b></br>
+    <%= f.text_field :email, class: 'form-control' %></br>
+    <b>Password:</b></br>
+    <%= f.password_field :password, class: 'form-control' %></br>
+    <b>Password Confirmation:</b></br>
+    <%= f.password_field :password_confirmation, class: 'form-control' %></br>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
   <% end %>
 </div>

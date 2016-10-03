@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :authorize
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  # accepts_nested_attributes_for :emails
 
   def index
     @tasks = current_user.tasks
@@ -31,25 +32,37 @@ class TasksController < ApplicationController
   end
 
   def update
-    if !params[:task][:another_user_email].empty? &&
-        params[:task][:another_user_email] =~ User::EMAIL_REGEX
+    if params[:emails]
+      if !params[:emails].empty?
+        notice_success = []
+        notice_failure = []
 
-      @user = User.find_by_email(params[:task][:another_user_email])
-
-      if @user
-        if @task.users.find_by_id(@user.id)
-          flash[:notice] = "This task already shared with #{@user.name}(#{@user.email})"
-          render :edit
-        else
-          @task.users << @user
-          @task.update(task_params)
-          NotifierJob.perform_now(@user, root_url) # TODO NotifierJob
-          redirect_to tasks_path # TODO add notice
+        params[:emails].each do |email|
+          if !email.empty? && email =~ User::EMAIL_REGEX
+            if @user = User.find_by_email(email)
+              if @task.users.find_by_id(@user.id)
+                notice_failure << "This task was already shared with #{@user.name}(#{@user.email})"
+              else
+                @task.users << @user
+                @task.update(task_params)
+                NotifierJob.perform_now(@user, root_url) # TODO NotifierJob
+                notice_success << "Task has been successfully shared with #{@user.name}(#{@user.email})"
+              end
+            else
+              notice_failure << "No user with email #{email} found."
+            end
+          end
         end
-      else
-        flash[:notice] = "No user with specified email found."
-        render :edit
-      end
+
+        flash[:notice_success] = notice_success
+
+        if notice_failure.empty?
+          redirect_to tasks_path
+        else
+          flash[:notice_failure] = notice_failure
+          render :edit
+        end
+      end  
     else
       @task.update(task_params)
       redirect_to tasks_path # TODO add notice

@@ -1,0 +1,31 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class="task-attribute"><b>Name:</b></div>
+    <div class="task-attribute-value"><%= task.name %></div>
+  </li>
+
+  <li class="list-group-item">
+    <div class="task-attribute"><b>Description:</b></div>
+    <div class="task-attribute-value">
+      <% if !task.description.empty? %>
+        <%= task.description %>
+      <% else %>
+        No description added
+      <% end %>
+    </div>
+  </li>
+
+  <% unless (users = task.users.where.not(id: current_user.id)).blank? %>
+    <li class="list-group-item">
+      <div class="task-attribute"><b>Shared with:</b></div>
+
+      <% users.each do |user| %>
+        <div class="task-attribute-value">
+          <%= user.email %></br>
+        </div>
+      <% end %>
+    </li>
+  <% end  %>
+
+  </br>
+</ul>

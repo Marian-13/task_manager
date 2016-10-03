@@ -1,16 +1,17 @@
 <%= form_for(task) do |f| %>
-  <% if flash[:notice]%>
-    <div class="error">
-      <%= flash[:notice] %>
-    </div>
-  <% end  %>
+  <%= render 'shared/flash_errors_array' %>
 
-  Name:</br>
-  <%= f.text_field :name %></br>
-  Description:</br>
-  <%= f.text_area :description %></br>
-  Share with(optional):</br>
-  <%= f.text_field :another_user_email %></br>
-  </br>
-  <%= f.submit "Submit" %>
+  <b>Name:</b></br>
+  <%= f.text_field :name, class: 'form-control' %>
+  <b>Description:</b></br>
+  <%= f.text_area :description, class: 'form-control' %></br>
+
+  <div>
+    <b>Share with by email(optional):</b>
+    <button type="button" class="btn btn-primary btn-sm" onclick="addSharedEmailContainer(this)">
+      <span class="glyphicon glyphicon-plus"></span>
+    </button>
+  </div>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
