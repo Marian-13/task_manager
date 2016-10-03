@@ -1,6 +1,4 @@
-<div class="std-div" id="notifications-container">
-  <h2>Notifications</h2>
-</div>
+<div class="std-div well well-sm" id="notifications-container"></div>
 
 <div class="std-div well well-sm">
   <%= render 'shared/flash_errors_array' %>
@@ -29,8 +27,6 @@
 <div class="std-div">
   <%= link_to 'New Task', new_task_path %>
 </div>
-
-<div class="std-div well well-sm" id="notifications-container"></div>
 
 <script type="text/javascript">
   fayeSubscribe("<%= @channel %>");

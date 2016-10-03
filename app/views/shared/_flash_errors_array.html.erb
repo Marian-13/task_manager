@@ -1,8 +1,3 @@
-<%= 100.times { puts "-----" } %>
-
-succes=<%= flash[:notice_success] %>
-failure=<%= flash[:notice_failure] %>
-
 <% if flash[:notice_success] %>
   <% flash[:notice_success].each do |success| %>
     <div class="alert alert-success">
@@ -13,7 +8,7 @@ failure=<%= flash[:notice_failure] %>
 <% end  %>
 
 <% if flash[:notice_failure]%>
-  <% flash[notice_failure].each do |failure| %>
+  <% flash[:notice_failure].each do |failure| %>
     <div class="alert alert-danger">
       <%= failure %>
     </div>

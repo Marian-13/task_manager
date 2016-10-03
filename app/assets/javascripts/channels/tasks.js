@@ -23,6 +23,7 @@ function addMessageText(messageText, className) {
   div.className = className;
   div.innerHTML = messageText;
   nc = document.getElementById('notifications-container');
+  console.log(nc);
   nc.style.display = "block";
   nc.appendChild(div);
 }
