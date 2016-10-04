@@ -1,3 +1,5 @@
+<div class="std-div well well-sm" id="notifications-container"></div>
+
 <div class="std-div well well-sm">
   <%= render 'shared/flash_errors_array' %>
   <%= render 'shared/model_errors', model: @task %>
@@ -11,4 +13,6 @@
   <%= link_to 'Back to List', tasks_path %>
 </div>
 
-<div class="std-div well well-sm" id="notifications-container"></div>
+<script type="text/javascript">
+  fayeSubscribe("<%= @channel %>");
+</script>
