@@ -1,17 +1,14 @@
 class TasksController < ApplicationController
   before_action :authorize
-  # before_action :set_task, only: [:show, :edit, :update, :destroy]
-  before_action :set_task, only: [:edit, :update, :destroy]
-  # accepts_nested_attributes_for :emails
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_channel, only: [:index, :show, :edit]
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   def index
     @tasks = current_user.tasks
-    @channel = "/#{current_user.id}"
   end
 
   def show
-    @task = Task.find_by_id(params[:id]) # TODO remove
-    render plain: "Task do not exist."   # TODO remove
     # TODO model Notification
     # TODO cover with RSpec
     # TODO refactor
@@ -43,7 +40,7 @@ class TasksController < ApplicationController
       unless users.empty?
         users.each do |user|
           @task.users << user
-          TaskSharingNotificationJob.perform_now(user, @task, root_url) # TODO NotifierJob
+          TaskSharingNotificationJob.perform_now(current_user, @task, root_url) # TODO NotifierJob
         end
       end
 
@@ -106,6 +103,10 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
     end
 
+    def set_channel
+      @channel = "/#{current_user.id}"
+    end
+
     def valid_emails_params(task, notice_failure_callback)
       emails = []
 
@@ -153,5 +154,9 @@ class TasksController < ApplicationController
       end
 
       users
+    end
+
+    def render_not_found
+      render plain: "Task do not exist."   # TODO remove
     end
 end

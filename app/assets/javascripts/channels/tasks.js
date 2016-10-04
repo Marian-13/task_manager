@@ -2,16 +2,12 @@ function fayeSubscribe(senderChannel) {
   // Global
   url = 'http://' + document.location.host + '/faye';
   client = new Faye.Client(url);
-  console.log("Became server client."); // TODO For testing purpose only
 
   subscription = client.subscribe(senderChannel, function(message) {
-    console.log(message.text);
     if (message.text) {
       addReceivedMessageText(message.text);
     }
   });
-
-  console.log("Subscribed to channel " + senderChannel +"."); // TODO For testing purpose only
 }
 
 function addReceivedMessageText(messageText) {
@@ -27,25 +23,28 @@ function addMessageText(messageText, className) {
   nc.style.display = "block";
   nc.appendChild(div);
 }
+
 // ----------------------------------------------------------------------------------------------- //
 
-var getNextIndex = (function() {
-  var index = 0;
-  return function() {return index++; };
-})();
+function initializeCounter() {
+  // Global
+  getNextIndex = (function() {
+    var index = 0;
+    return function() {return index++; };
+  })();
 
-var counter = {
-  value: 0,
+  counter = {
+    value: 0,
 
-  increment: function() {
-    this.value++;
-  },
+    increment: function() {
+      this.value++;
+    },
 
-  decrement: function() {
-    this.value--;
+    decrement: function() {
+      this.value--;
+    }
   }
 }
-
 // ----------------------------------------------------------------------------------------------- //
 
 function addSharedEmailContainer(node) {

@@ -37,6 +37,12 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # rspec-rails is a testing framework for Rails 3.x, 4.x and 5.0.
+  gem 'rspec-rails', '~> 3.5'
+  # assert_template has been extracted to a gem. To continue using it, add
+  gem 'rails-controller-testing'
+  # shoulda provides Test::Unit and RSpec-compatible one-liners that test common Rails functionality.
+  gem 'shoulda', '~> 3.5'
 end
 
 group :development do
