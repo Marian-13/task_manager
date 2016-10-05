@@ -1,6 +1,6 @@
 ## Task Manager
 
-## Requirements
+### Requirements
   Ruby  2.3.0 or newer
 
   Rails 5.0.0 or newer
