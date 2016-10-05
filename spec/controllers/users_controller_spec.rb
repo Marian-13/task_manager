@@ -17,15 +17,4 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to redirect_to(tasks_path)
     end
   end
-
-  describe "POST #create" do
-    # it 'should redirect to the tasks if valid parameters' do
-    #   params = {user: { name: 'user01',
-    #                         email: 'user01@email.com',
-    #                         password: '231cret',
-    #                         password_confirmation:'secret' }}
-    #   post :create, params
-    #   response.should redirect_to tasks_path
-    # end
-  end
 end

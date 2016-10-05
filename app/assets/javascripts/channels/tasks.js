@@ -49,6 +49,7 @@ function initializeCounter() {
     }
   }
 }
+
 // ----------------------------------------------------------------------------------------------- //
 
 function addSharedEmailContainer(node) {

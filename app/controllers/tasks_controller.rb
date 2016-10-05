@@ -9,9 +9,6 @@ class TasksController < ApplicationController
   end
 
   def show
-    # TODO model Notification
-    # TODO cover with RSpec
-    # TODO refactor
   end
 
   def new
@@ -27,7 +24,6 @@ class TasksController < ApplicationController
     if @task.save
       current_user.tasks << @task
 
-      # TODO DRY update
       flash[:notice_success] = []
       flash[:notice_failure] = []
 
@@ -40,11 +36,10 @@ class TasksController < ApplicationController
       unless users.empty?
         users.each do |user|
           @task.users << user
-          TaskSharingNotificationJob.perform_now(current_user, @task, root_url) # TODO NotifierJob
+          TaskSharingNotificationJob.perform_now(current_user, user, @task, root_url)
         end
       end
 
-      # TODO remove @task.errors.any? in _model_errors
       if flash[:notice_failure].empty? && !@task.errors.any?
         flash[:notice_success] << "Task was successfully created."
         redirect_to @task
@@ -59,7 +54,6 @@ class TasksController < ApplicationController
   def update
     @task.update(task_params)
 
-    # TODO DRY create
     flash[:notice_success] = []
     flash[:notice_failure] = []
 
@@ -72,11 +66,10 @@ class TasksController < ApplicationController
     unless users.empty?
       users.each do |user|
         @task.users << user
-        TaskSharingNotificationJob.perform_now(user, @task, root_url) # TODO NotifierJob
+        TaskSharingNotificationJob.perform_now(user, @task, root_url)
       end
     end
 
-    # TODO remove @task.errors.any? in _model_errors
     if flash[:notice_failure].empty? && !@task.errors.any?
       flash[:notice_success] << "Task was successfully edited."
       redirect_to task_path
@@ -157,6 +150,6 @@ class TasksController < ApplicationController
     end
 
     def render_not_found
-      render plain: "Task do not exist."   # TODO remove
+      render plain: "Task does not exist."
     end
 end
