@@ -11,6 +11,6 @@ cd /tmp
 git clone https://github.com/marian-13/task_manager.git
 cd task_manager
 rake db:migrate
-rake db:test:seed
+rake db:seed
 rails server
 ```
