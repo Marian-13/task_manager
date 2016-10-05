@@ -1,10 +1,10 @@
 ## Task Manager
 
 ### Requirements
-  Ruby  2.3.0 or newer
-
-  Rails 5.0.0 or newer
-
+```
+Ruby  2.3.0 or newer
+Rails 5.0.0 or newer
+```
 ### Getting started
 ```
 cd /tmp
