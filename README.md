@@ -1,11 +1,11 @@
 # README
 
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+cd /tmp
+git clone https://github.com/marian-13/task_manager.git
+cd task_manager
+rake db:migrate
+rake db:test:seed
+rails server
 
 * Ruby version
 
